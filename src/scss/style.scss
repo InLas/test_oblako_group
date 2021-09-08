@@ -1,0 +1,94 @@
+@mixin font($font_name, $file_name, $weight, $style) {
+
+  @font-face {
+  font-family: $font_name;
+  font-display: swap;
+  src: url("../fonts/#{$file_name}.woff") format("woff"), url("../fonts/#{$file_name}.woff2") format("woff2");
+  font-weight: #{$weight};
+  font-style: #{$style};
+  }
+}
+
+// Шрифты =================
+$fontfamily: "Montserrat";
+$fontsize: 12px;
+$lineheight: 16px;
+$fontweight: 500;
+// Шрифты =================
+
+// Переменные =============
+$black: #000000;
+$black87: rgba($color: #000000, $alpha: 0.87);
+$black54: rgba($color: #000000, $alpha: 0.54);
+$blue: #1071FF;
+$red: #FC3259;
+$white: #ffffff;
+$bgColor: #ffffff;
+$containerPadding: 0 16px;
+// Переменные =============
+
+// Адаптивное свойство =============
+$maxWidth: 1280;
+$maxWidthContainer: 1194;
+
+@mixin adaptiv-value($propepty, $startSize, $minSize, $type) {
+  $addSize: $startSize - $minSize;
+  @if $type==1 {
+    #{$propepty}: $startSize + px;
+    @media (max-width: #{$maxWidthContainer + px}) {
+      #{$propepty}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
+    }
+  } @else if $type==2 {
+    #{$propepty}: $startSize + px;
+    @media (min-width: #{$maxWidthContainer + px}) {
+      #{$propepty}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+    }
+  } @else {
+    #{$propepty}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+  }
+}
+// Адаптивное свойство =============
+
+@import 'global/fonts.scss';
+
+@import 'global/variables.scss';
+
+@import 'global/global.scss';
+
+@import 'global/icons.scss';
+
+@import '_page.scss';
+
+@import '_page-header.scss';
+
+@import '_controls.scss';
+
+@import '_main-nav.scss';
+
+@import '_heading.scss';
+
+@import '_breadcrumbs.scss';
+
+@import '_lerning.scss';
+
+@import '_filters.scss';
+
+@import '_setting-filter.scss';
+
+@import '_activity.scss';
+
+@import '_menu-activity.scss';
+
+@import '_selects.scss';
+
+@import '_selects-list.scss';
+
+@import '_planning.scss';
+
+@import '_events.scss';
+
+@import '_datepicker.scss';
+
+@import '_conditions.scss';
+
+@import '_members.scss';

@@ -1,0 +1,30 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: $fontfamily;
+  font-size: $fontsize;
+  line-height: $lineheight;
+  font-weight: $fontweight;
+
+  max-width: $maxWidth + px;
+  min-height: 100%;
+
+  margin: 0 auto;
+
+  position: relative;
+
+  color: $black;
+  background-color: $bgColor;
+
+  &--planning {
+    pointer-events: none;
+  }
+}
+
+.page-main {
+  flex: 1 1 auto;
+
+  width: 100%;
+}

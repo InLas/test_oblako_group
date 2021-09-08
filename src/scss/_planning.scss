@@ -1,0 +1,190 @@
+.planning {
+  position: absolute;
+  top: 0;
+  right: -100%;
+
+  overflow: auto;
+
+  max-width: 884px;
+  width: 0%;
+  height: 0%;
+
+  box-sizing: border-box;
+
+  background: $bgColor;
+  border-left: 1px solid rgba($color: $black, $alpha: 0.08);
+  transition: all 0.5s ease 0s;
+  z-index: 100;
+
+  &--active {
+    pointer-events: all;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 0 100vmax rgba($color: $bgColor, $alpha: 0.94);
+  }
+
+  @media (min-width: $tablet-width) {
+    &--active {
+      right: -17px;
+    }
+  }
+
+  &__container {
+    @media (min-width: $tablet-width) {
+      position: relative;
+      padding: 0 24px;
+
+      &--header {
+        &::before {
+          content: '';
+        
+          position: absolute;
+          bottom: 0;
+          left: 0;
+    
+          width: 100%;
+          height: 1px;
+    
+          background-color: rgba($color: $black, $alpha: 0.08);
+        }
+      }
+    }
+  }
+
+  &__heading {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 30px;
+    padding-top: 40px;
+  }
+
+  &__title {
+    font-size: 18px;
+    line-height: 24px;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0;
+    line-height: 0;
+    width: 24px;
+    height: 24px;
+
+    margin: 0;
+    padding: 0;
+
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  &__btn--ok {
+    margin-left: auto;
+    margin-right: 16px;
+
+    @extend ._icon-check;
+    &::before {
+      @extend %ic;
+      font-size: 12px;
+
+      color:$blue;
+    }
+  }
+
+  &__btn--cancel {
+    @extend ._icon-cross;
+    &::before {
+      @extend %ic;
+      font-size: 12px;
+    
+      color: $black54;
+    }
+  }
+
+  &__toggles {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    margin-bottom: 35px;
+    padding-bottom: 10px;
+  }
+
+  &__toggle {
+    font: inherit;
+
+    position: relative;
+
+    margin-right: 24px;
+    padding: 0;
+
+    border: none;
+    background-color: transparent;
+
+    color: $black54;
+    cursor: pointer;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    &--active {
+      color: $black87;
+      &::before {
+        content: '';
+      
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+  
+        width: 100%;
+        height: 2px;
+  
+        background-color: $blue;
+        border-radius: 2px;
+      }
+    }
+
+    &--disabled {
+      color: rgba($color: $black, $alpha: 0.22);
+      pointer-events: none;
+    }
+  }
+
+  &__page {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease 0s;
+    animation: show 0.5s ease;
+
+    &--active {
+      display: block;
+      opacity: 1;
+    }
+  }
+
+  @keyframes show {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  &__program {
+    margin-bottom: 52px;
+  }
+
+  &__select {
+    width: 100%;
+  }
+}

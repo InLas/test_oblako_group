@@ -1,0 +1,55 @@
+.menu-activity {
+  padding: 8px 0;
+
+  border-radius: 5px;
+  background-color: $bgColor;
+  box-shadow: 0 2px 6px 0 rgba($color: $black, $alpha: 0.16);
+  z-index: 5;
+
+  &__btn {
+    display: flex;
+    align-items: center;
+
+    font: inherit;
+
+    box-sizing: border-box;
+
+    width: 162px;
+
+    padding: 10px 0;
+
+    color: $black87;
+    border: none;
+    background-color: transparent;
+    transition: background-color 0.3s ease 0s;
+    cursor: pointer;
+
+    @extend ._icon-pencil;
+    &::before {
+      @extend %ic;
+      font-size: 13px;
+      margin: 0 19px;
+      color: $black54;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: rgba($color: $black, $alpha: 0.18);
+      }
+    }
+
+    &:focus {
+      background-color: rgba($color: $black, $alpha: 0.18);
+    }
+
+    &--del {
+      @extend ._icon-trash;
+      &::before {
+        @extend %ic;
+        font-size: 13px;
+        margin: 0 19px;
+        color: $black54;
+      }
+    }
+  }
+}

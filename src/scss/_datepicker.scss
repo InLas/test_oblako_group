@@ -1,0 +1,112 @@
+.ui-datepicker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-sizing: border-box;
+  pointer-events: all;
+
+  // min-width: 290px;
+
+  // padding: 16px;
+  box-shadow: 0 2px 6px 0 rgba($color: $black, $alpha: 0.16);
+  background-color: $bgColor;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin-bottom: 8px;
+  }
+
+  &-prev,
+  &-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0;
+    line-height: 0;
+
+    transform: rotate(90deg);
+
+    width: 40px;
+    height: 40px;
+
+    @extend ._icon-arrow-down;
+    &::before {
+      @extend %ic;
+      font-size: 12px;
+      color: $black54;
+      transition: transform 0.3s ease 0s;
+    }
+  }
+
+  &-month {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 700;
+  }
+
+  &-year {
+    font-size: 14px;
+    line-height: 18px;
+
+    color: $black54;
+    border: none;
+  }
+
+  &-next {
+    transform: rotate(-90deg);
+    order: 3;
+  }
+
+  & thead span {
+    color: $black54;
+  }
+
+  &-calendar {
+    width: 100%; 
+  }
+}
+
+.ui-state-default {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  margin: 4px;
+  padding: 0;
+
+  color: $black87;
+  background-color: $bgColor;
+  border-radius: 50%;
+  transition: background-color 0.3s ease 0s;
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: rgba($color: $black, $alpha: 0.05);
+    }
+  }
+
+  &:focus {
+    background-color: rgba($color: $black, $alpha: 0.05);
+  }
+
+  &:active {
+    background-color: $blue;
+  }
+}
+
+.ui-datepicker-trigger {
+  position: absolute;
+  top: -1px;
+  left: 2px;
+  cursor: pointer;
+}

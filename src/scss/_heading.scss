@@ -1,0 +1,35 @@
+.heading {
+  align-self: flex-start;
+  display: none;
+
+  width: 100%;
+
+  @media (min-width: $tablet-width) {
+    display: block;
+  }
+
+  &__container {
+    padding: 0 36px;
+  }
+
+  &__title {
+    font-size: 38px;
+    line-height: 40px;
+    font-weight: 700;
+
+    margin: 0;
+    padding: 0;
+
+    transition: all 0.3s ease 0s;
+
+    @extend ._icon-planning;
+    &::before {
+      @extend %ic;
+      font-size: 30px;
+
+      margin-right: 18px;
+
+      color: $blue;
+    }
+  }
+}

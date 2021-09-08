@@ -1,0 +1,258 @@
+.activity {
+
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+    padding: 0 8px;
+
+    @media (min-width: $tablet-width) {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__link {
+    font-size: 10px;
+    line-height: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    color: $black54;
+    transition: all 0.3s ease 0s;
+
+    &--active {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+
+      color: $black87;
+
+      @extend ._icon-arrow-down;
+      &::before {
+        @extend %ic;
+        font-size: 6px;
+
+        margin-left: 2px;
+      
+        transition: transform 0.3s ease 0s;
+      }
+    }
+
+    &--filter {
+      &::before {
+        transform: rotate(180deg);
+      }
+    }
+
+    &--date {
+      min-width: 86px;
+    }
+
+    &--name {
+      @include adaptiv-value('width', 546, 97, 1);
+    }
+
+    &--members {
+      @include adaptiv-value('width', 104, 26, 1);
+
+      &::after {
+        content: 'Уч.';
+      }
+    }
+
+    &--trener {
+      display: none;
+    }
+
+    &--progress {
+      @include adaptiv-value('width', 87, 58, 1);
+    }
+
+    @media (min-width: $tablet-width) {
+      &::before {
+        margin-left: 6px;
+      }
+
+      &--trener {
+        display: block;
+
+        min-width: 100px;
+      }
+
+      &--members {
+        &::after {
+          content: 'Участников';
+        }
+      }
+
+      &--progress {
+        margin-right: 113px;
+      }
+    }
+  }
+
+  &__list {
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    position: relative;
+
+    min-height: 52px;
+
+    padding: 0 8px;
+
+    border-radius: 5px;
+    transition: background-color 0.3s ease 0s;
+    cursor: pointer;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: rgba($color: $black, $alpha: 0.05);
+      }
+    }
+
+    &:focus {
+      background-color: rgba($color: $black, $alpha: 0.05);
+    }
+
+    @media (min-width: $tablet-width) {
+      align-items: center;
+    }
+  }
+
+  &__text {
+    display: flex;
+    align-items: center;
+
+    color: $black87;
+
+    pointer-events: none;
+
+    &--name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    &--date {
+      min-width: 86px;
+    }
+
+    &--name {
+      @include adaptiv-value('width', 546, 97, 1);
+    }
+
+    &--members {
+      @include adaptiv-value('width', 104, 26, 1);
+    }
+
+    &--trener {
+      display: none;
+    }
+
+    &--progress {
+      @include adaptiv-value('width', 87, 58, 1);
+
+      @extend ._icon-progress;
+      &::before {
+        @extend %ic;
+        font-size: 14px;
+        margin-right: 8px;
+        color: $black54;
+      }
+    }
+
+    @media (min-width: $tablet-width) {
+      &--trener {
+        display: block;
+
+        min-width: 100px;
+      }
+
+      &--progress {
+        margin-right: 113px;
+      }
+    }
+  }
+
+  &__control {
+    display: flex;
+    align-items: center;
+
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translate(0, -50%);
+  }
+
+  &__btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0;
+    line-height: 0;
+
+    width: 32px;
+    height: 32px;
+
+    padding: 0;
+
+    background-color: $bgColor;
+    border: none;
+    border-radius: 50%;
+    transition: background-color 0.3s ease 0s;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+    
+      position: absolute;
+      
+      width: 3px;
+      height: 11px;
+      
+      background: no-repeat center url(../img/svg/menu.svg);
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: rgba($color: $black, $alpha: 0.18);
+      }
+    }
+
+    &:focus {
+      background-color: rgba($color: $black, $alpha: 0.18);
+    }
+
+    @media (min-width: $desktop-width) {
+      display: flex;
+    }
+  }
+
+  &__menu {
+    display: none;
+
+    position: absolute;
+    bottom: 43px;
+    right: 0;
+
+    &--active {
+      display: block;
+    }
+  }
+}
