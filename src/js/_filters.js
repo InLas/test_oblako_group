@@ -1,152 +1,163 @@
-const forms = document.querySelectorAll('.filters');
+const $filters = $('.filters');
 
-if (forms) {
-  forms.forEach(form => {
+if ($filters) {
 
-    const filterItems = form.querySelectorAll('.filters__item');
-    const openFilters = form.querySelectorAll('.filters__btn--set');
-    const settingFilters = form.querySelectorAll('.setting-filter');
-    const resets = form.querySelectorAll('.filters__btn--reset');
+  $filters.each(function () {
 
-    filterItems.forEach(filterItem => {
-      const inputSelector = filterItem.querySelector('.filters__input--selector');
+    const $filterItems = $(this).find($('.filters__item'));
+    const $openSetFilters = $(this).find($('.filters__btn--set'));
+    const $inputSelectors = $(this).find($('.filters__input--selector'));
+    const $settingFilters = $(this).find($('.setting-filter'));
+    const $resets = $(this).find($('.filters__btn--reset'));
+    const $closeBtns = $(this).find($('.setting-filter__btn--cancel'));
+    const $okBtns = $(this).find($('.setting-filter__btn--ok'));
+    const $checkboxes = $(this).find($('.setting-filter__checkbox'));
 
-      if (inputSelector) {
-        const filterDrop = filterItem.querySelector('.filters__drop');
-        const filterSelects = filterItem.querySelectorAll('.filters__select');
+    $openSetFilters.on('click', function () {
 
-        inputSelector.textContent = 'Все';
+      let $current = $(this);
 
-        inputSelector.addEventListener('click', (evt) => {
-          evt.preventDefault();
-          filterItem.classList.toggle('filters__item--active');
-        });
+      $(this).siblings($settingFilters).toggleClass('setting-filter--active');
 
-        document.addEventListener('click', function (e) {
-          const target = e.target;
-          const its_filterDrop = target == filterDrop || filterDrop.contains(target);
-          const its_inputSelector = target == inputSelector;
-          const filterItem_is_active = filterItem.classList.contains('filters__item--active');
+      $(document).on('click', function (evt) {
 
-          if (!its_filterDrop && !its_inputSelector && filterItem_is_active) {
-            filterItem.classList.toggle('filters__item--active');
-          }
-        });
+        if (!$current.is(evt.target) && !$current.siblings($settingFilters).is(evt.target) && $current.siblings($settingFilters).has(evt.target).length === 0) {
+          $current.siblings($settingFilters).removeClass('setting-filter--active');
+        }
 
-        filterSelects.forEach(filterSelect => {
-          filterSelect.classList.add('filters__select--active');
-          let filterSelectResultMore = 1;
+      });
 
-          filterSelect.addEventListener('click', (evt) => {
-            evt.preventDefault();
-
-            if (!filterSelect.classList.contains('filters__select--active')) {
-              filterSelect.classList.add('filters__select--active');
-
-              let filterSelectResult = filterSelect.dataset.param;
-
-              let content = `<span class="filters__multiple">${filterSelectResult}<button class="filters__multiple-del"></button></span>`
-
-              let contentMore = `<span class="filters__multiple--more">${filterSelectResultMore}</span>`
-
-              if (inputSelector.textContent === 'Все') {
-                inputSelector.textContent = '';
-                inputSelector.insertAdjacentHTML('beforeend', content);
-              } else if (inputSelector.querySelector('.filters__multiple--more')) {
-                filterSelectResultMore += 1;
-                inputSelector.querySelector('.filters__multiple--more').textContent = filterSelectResultMore;
-              } else {
-                inputSelector.insertAdjacentHTML('afterbegin', contentMore);
-              }
-            } else {
-              filterSelect.classList.remove('filters__select--active');
-
-              if (inputSelector.querySelector('.filters__multiple--more') && inputSelector.querySelector('.filters__multiple') && inputSelector.querySelector('.filters__multiple--more').textContent > 1) {
-                filterSelectResultMore -= 1;
-                inputSelector.querySelector('.filters__multiple--more').textContent = filterSelectResultMore;
-              } else if (inputSelector.querySelector('.filters__multiple') && inputSelector.querySelector('.filters__multiple--more') && inputSelector.querySelector('.filters__multiple--more').textContent <= 1) {
-                inputSelector.removeChild(inputSelector.firstChild);
-              } else if (inputSelector.querySelector('.filters__multiple') && !inputSelector.querySelector('.filters__multiple--more')) {
-                inputSelector.removeChild(inputSelector.firstChild);
-              }
-            }
-          });
-        });
-      }
     });
 
-    settingFilters.forEach(settingFilter => {
+    $resets.on('click', function () {
 
-      const closeBtn = settingFilter.querySelector('.setting-filter__btn--cancel');
-      const okBtn = settingFilter.querySelector('.setting-filter__btn--ok');
-      const checkboxes = settingFilter.querySelectorAll('.setting-filter__checkbox');
+      $checkboxes.each(function () {
 
-      openFilters.forEach(openFilter => {
-        openFilter.addEventListener('click', () => {
-          if (!settingFilter.classList.contains('setting-filter--active')) {
-            settingFilter.classList.add('setting-filter--active');
+        let $currentCheckbox = $(this);
+
+        $filterItems.each(function () {
+
+          if ($currentCheckbox.attr('data-filter') !== 'search' && $currentCheckbox.attr('data-filter') !== 'program' && $currentCheckbox.attr('data-filter') !== 'trening' && $currentCheckbox.attr('data-filter') !== 'trener') {
+            $currentCheckbox.prop('checked', false);
           } else {
-            settingFilter.classList.remove('setting-filter--active');
+            $currentCheckbox.prop('checked', true);
           }
-        });
 
-        document.addEventListener('click', function (e) {
-          const target = e.target;
-          const its_settingFilter = target == settingFilter || settingFilter.contains(target);
-          const its_openFilter = target == openFilter;
-          const settingFilter_is_active = settingFilter.classList.contains('setting-filter--active');
-
-          if (!its_settingFilter && !its_openFilter && settingFilter_is_active) {
-            settingFilter.classList.toggle('setting-filter--active');
+          if ($(this).attr('data-filter') !== 'search' && $(this).attr('data-filter') !== 'program' && $(this).attr('data-filter') !== 'trening' && $(this).attr('data-filter') !== 'trener') {
+            $(this).removeClass('filters__item--show');
+          } else {
+            $(this).addClass('filters__item--show');
           }
+
         });
-      });
 
-      closeBtn.addEventListener('click', () => {
-        settingFilter.classList.remove('setting-filter--active');
-      });
-
-      checkboxes.forEach(checkbox => {
-        filterItems.forEach(filterItem => {
-          if (checkbox.checked && checkbox.id === filterItem.dataset.filter) {
-            filterItem.classList.add('filters__item--show');
-          }
-        });
-      });
-
-      okBtn.addEventListener('click', () => {
-        checkboxes.forEach(checkbox => {
-          filterItems.forEach(filterItem => {
-            if (checkbox.checked && checkbox.id === filterItem.dataset.filter) {
-              filterItem.classList.add('filters__item--show');
-            } else if (checkbox.checked === false && checkbox.id === filterItem.dataset.filter) {
-              filterItem.classList.remove('filters__item--show');
-            }
-            settingFilter.classList.remove('setting-filter--active');
-          });
-        });
-      });
-
-      resets.forEach(reset => {
-        reset.addEventListener('click', () => {
-          checkboxes.forEach(checkbox => {
-            filterItems.forEach(filterItem => {
-              if (checkbox.id !== 'search' && checkbox.id !== 'program' && checkbox.id !== 'trening' && checkbox.id !== 'trener') {
-                checkbox.checked = false;
-              } else {
-                checkbox.checked = true;
-              }
-
-              if (filterItem.dataset.filter !== 'search' && filterItem.dataset.filter !== 'program' && filterItem.dataset.filter !== 'trening' && filterItem.dataset.filter !== 'trener') {
-                filterItem.classList.remove('filters__item--show');
-              } else {
-                filterItem.classList.add('filters__item--show');
-              }
-            });
-          });
-        });
       });
 
     });
+
+    $closeBtns.on('click', function () {
+
+      $(this).closest($settingFilters).removeClass('setting-filter--active');
+
+    });
+
+    $checkboxes.each(function () {
+
+      let $currentCheckbox = $(this);
+
+      $filterItems.each(function () {
+
+        if ($currentCheckbox.is(':checked') && $currentCheckbox.attr('data-filter') === $(this).attr('data-filter')) {
+          $(this).addClass('filters__item--show');
+        }
+
+      });
+
+    });
+
+    $okBtns.on('click', function () {
+
+      $checkboxes.each(function () {
+
+        let $currentCheckbox = $(this);
+
+        $filterItems.each(function () {
+
+          if ($currentCheckbox.is(':checked') && $currentCheckbox.attr('data-filter') === $(this).attr('data-filter')) {
+            $(this).addClass('filters__item--show');
+          } else if ($currentCheckbox.is(':checked') === false && $currentCheckbox.attr('data-filter') === $(this).attr('data-filter')) {
+            $(this).removeClass('filters__item--show');
+          }
+
+        });
+
+      });
+
+      $(this).closest($settingFilters).removeClass('setting-filter--active');
+
+    });
+
+    $inputSelectors.on('click', function (evt) {
+
+      evt.preventDefault();
+      this.blur();
+      let $current = $(this);
+      let $parent = $(this).parent($filterItems);
+      let $filterDrop = $(this).parent($filterItems).children('.filters__drop');
+
+      $parent.toggleClass('filters__item--active');
+
+      $(document).on('click', function (evt) {
+
+        if (!$current.is(evt.target) && !$filterDrop.is(evt.target) && $filterDrop.has(evt.target).length === 0) {
+          $parent.removeClass('filters__item--active');
+        }
+
+      });
+
+    });
+
+    $filterItems.each(function () {
+
+      const $inputSelectors = $(this).find($('.filters__input--selector'));
+      const $filterSelects = $(this).find($('.filters__select'));
+
+      let $resultMore = 1;
+
+      $filterSelects.on('click', function (evt) {
+
+        evt.preventDefault();
+
+        let $result = $(this).attr('data-param');
+        let $content = `<span class="filters__multiple">${$result}<button class="filters__multiple-del"></button></span>`
+        let $contentMore = `<span class="filters__multiple--more">${$resultMore}</span>`
+
+        if (!$(this).hasClass('filters__select--active')) {
+          $(this).addClass('filters__select--active');
+
+          if ($inputSelectors.children().length === 0) {
+            $inputSelectors.append($content);
+          } else if ($inputSelectors.children('.filters__multiple--more').length > 0) {
+            $resultMore += 1;
+            $inputSelectors.children('.filters__multiple--more').html($resultMore);
+          } else if ($inputSelectors.children().length > 0) {
+            $inputSelectors.prepend($contentMore);
+          }
+
+        } else {
+          $(this).removeClass('filters__select--active');
+
+          if ($inputSelectors.children('.filters__multiple--more').length > 0 && $inputSelectors.children('.filters__multiple').length > 0 && $inputSelectors.children('.filters__multiple--more').text() <= 1) {
+            $inputSelectors.remove('.filters__multiple--more');
+          } else if ($inputSelectors.children('.filters__multiple--more').length > 0) {
+            $resultMore -= 1;
+            $inputSelectors.children('.filters__multiple--more').html($resultMore);
+          }
+
+        }
+      });
+    });
+
   });
+
 }

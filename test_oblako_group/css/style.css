@@ -266,6 +266,7 @@ input[type="radio"].visually-hidden {
 .page-header--scroll .heading {
   position: absolute;
   top: 10px;
+  z-index: -1;
 }
 
 .page-header--scroll .heading__container {

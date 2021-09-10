@@ -9,10 +9,10 @@
     <div class="container">
       <form action="" id="form1" method="get" class="lerning__form  filters">
         <ul class="filters__list">
-          <li class="filters__item" data-filter="search1">
+          <li class="filters__item" data-filter="search">
             <input type="search" class="filters__input  filters__input--search" placeholder="Поиск">
           </li>
-          <li class="filters__item" data-filter="program1">
+          <li class="filters__item" data-filter="program">
             <span class="filters__title">Программа</span>
             <a href="#" class="filters__input  filters__input--selector"></a>
             <ul class="filters__drop">
@@ -31,7 +31,7 @@
             </ul>
             <input type="hidden" name="program">
           </li>
-          <li class="filters__item" data-filter="trening1">
+          <li class="filters__item" data-filter="trening">
             <span class="filters__title">Тренинг</span>
             <a href="#" class="filters__input  filters__input--selector"></a>
             <ul class="filters__drop">
@@ -47,7 +47,7 @@
             </ul>
             <input type="hidden" name="trening">
           </li>
-          <li class="filters__item" data-filter="trener1">
+          <li class="filters__item" data-filter="trener">
             <span class="filters__title">Тренер</span>
             <a href="#" class="filters__input  filters__input--selector"></a>
             <ul class="filters__drop">
@@ -63,7 +63,7 @@
             </ul>
             <input type="hidden" name="trener">
           </li>
-          <li class="filters__item" data-filter="role1">
+          <li class="filters__item" data-filter="role">
             <span class="filters__title">Роли</span>
             <a href="#" class="filters__input  filters__input--selector"></a>
             <ul class="filters__drop">
@@ -79,7 +79,7 @@
             </ul>
             <input type="hidden" name="role">
           </li>
-          <li class="filters__item" data-filter="category1">
+          <li class="filters__item" data-filter="category">
             <span class="filters__title">Категория</span>
             <a href="#" class="filters__input  filters__input--selector"></a>
             <ul class="filters__drop">
@@ -95,7 +95,7 @@
             </ul>
             <input type="hidden" name="category">
           </li>
-          <li class="filters__item" data-filter="id1">
+          <li class="filters__item" data-filter="id">
             <span class="filters__title">ID</span>
             <a href="#" class="filters__input  filters__input--selector"></a>
             <ul class="filters__drop">
@@ -111,7 +111,7 @@
             </ul>
             <input type="hidden" name="id">
           </li>
-          <li class="filters__item" data-filter="number1">
+          <li class="filters__item" data-filter="number">
             <span class="filters__title">Табельный номер</span>
             <a href="#" class="filters__input  filters__input--selector"></a>
             <ul class="filters__drop">
@@ -127,7 +127,7 @@
             </ul>
             <input type="hidden" name="number">
           </li>
-          <li class="filters__item" data-filter="duration1">
+          <li class="filters__item" data-filter="duration">
             <span class="filters__title">Длительность</span>
             <a href="#" class="filters__input  filters__input--selector"></a>
             <ul class="filters__drop">
@@ -143,7 +143,7 @@
             </ul>
             <input type="hidden" name="duration">
           </li>
-          <li class="filters__item" data-filter="category1">
+          <li class="filters__item" data-filter="category">
             <span class="filters__title">Категория</span>
             <a href="#" class="filters__input  filters__input--selector"></a>
             <ul class="filters__drop">
@@ -159,7 +159,7 @@
             </ul>
             <input type="hidden" name="category">
           </li>
-          <li class="filters__item" data-filter="numberPers1">
+          <li class="filters__item" data-filter="numberPers">
             <span class="filters__title">Кол-во сотрудников</span>
             <a href="#" class="filters__input  filters__input--selector"></a>
             <ul class="filters__drop">
@@ -175,7 +175,7 @@
             </ul>
             <input type="hidden" name="numberPers">
           </li>
-          <li class="filters__item" data-filter="subdivision1">
+          <li class="filters__item" data-filter="subdivision">
             <span class="filters__title">Департамент</span>
             <a href="#" class="filters__input  filters__input--selector"></a>
             <ul class="filters__drop">
@@ -206,19 +206,23 @@
                 <h5 class="setting-filter__title">Системные поля</h5>
                 <ul class="setting-filter__field">
                   <li class="setting-filter__item">
-                    <input type="checkbox" id="search1" class="visually-hidden setting-filter__checkbox" checked>
+                    <input type="checkbox" id="search1" data-filter="search"
+                      class="visually-hidden setting-filter__checkbox" checked disabled>
                     <label for="search1" class="setting-filter__label">Поиск</label>
                   </li>
                   <li class="setting-filter__item">
-                    <input type="checkbox" id="program1" class="visually-hidden setting-filter__checkbox" checked>
+                    <input type="checkbox" id="program1" data-filter="program"
+                      class="visually-hidden setting-filter__checkbox" checked>
                     <label for="program1" class="setting-filter__label">Программа</label>
                   </li>
                   <li class="setting-filter__item">
-                    <input type="checkbox" id="trening1" class="visually-hidden setting-filter__checkbox" checked>
+                    <input type="checkbox" id="trening1" data-filter="trening"
+                      class="visually-hidden setting-filter__checkbox" checked>
                     <label for="trening1" class="setting-filter__label">Тренинг</label>
                   </li>
                   <li class="setting-filter__item">
-                    <input type="checkbox" id="trener1" class="visually-hidden setting-filter__checkbox" checked>
+                    <input type="checkbox" id="trener1" data-filter="trener"
+                      class="visually-hidden setting-filter__checkbox" checked>
                     <label for="trener1" class="setting-filter__label">Тренер</label>
                   </li>
                   </li>
@@ -226,31 +230,37 @@
                 <h5 class="setting-filter__title">Дополнительные поля</h5>
                 <ul class="setting-filter__field">
                   <li class="setting-filter__item">
-                    <input type="checkbox" id="role1" class="visually-hidden setting-filter__checkbox">
+                    <input type="checkbox" id="role1" data-filter="role"
+                      class="visually-hidden setting-filter__checkbox">
                     <label for="role1" class="setting-filter__label">Роли</label>
                   </li>
                   <li class="setting-filter__item">
-                    <input type="checkbox" id="category1" class="visually-hidden  setting-filter__checkbox">
+                    <input type="checkbox" id="category1" data-filter="category"
+                      class="visually-hidden  setting-filter__checkbox">
                     <label for="category1" class="setting-filter__label">Категория</label>
                   </li>
                   <li class="setting-filter__item">
-                    <input type="checkbox" id="id1" class="visually-hidden setting-filter__checkbox">
+                    <input type="checkbox" id="id1" data-filter="id" class="visually-hidden setting-filter__checkbox">
                     <label for="id1" class="setting-filter__label">ID</label>
                   </li>
                   <li class="setting-filter__item">
-                    <input type="checkbox" id="number1" class="visually-hidden setting-filter__checkbox">
+                    <input type="checkbox" id="number1" data-filter="number"
+                      class="visually-hidden setting-filter__checkbox">
                     <label for="number1" class="setting-filter__label">Табельный номер</label>
                   </li>
                   <li class="setting-filter__item">
-                    <input type="checkbox" id="duration1" class="visually-hidden setting-filter__checkbox">
+                    <input type="checkbox" id="duration1" data-filter="duration"
+                      class="visually-hidden setting-filter__checkbox">
                     <label for="duration1" class="setting-filter__label">Длительность</label>
                   </li>
                   <li class="setting-filter__item">
-                    <input type="checkbox" id="subdivision1" class="visually-hidden setting-filter__checkbox">
+                    <input type="checkbox" id="subdivision1" data-filter="subdivision"
+                      class="visually-hidden setting-filter__checkbox">
                     <label for="subdivision1" class="setting-filter__label">Подразделение</label>
                   </li>
                   <li class="setting-filter__item">
-                    <input type="checkbox" id="numberPers1" class="visually-hidden setting-filter__checkbox">
+                    <input type="checkbox" id="numberPers1" data-filter="numberPers"
+                      class="visually-hidden setting-filter__checkbox">
                     <label for="numberPers1" class="setting-filter__label">Кол-во сотрудников</label>
                   </li>
                   </li>
