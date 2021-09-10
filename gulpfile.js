@@ -8,6 +8,7 @@ let path = {
     html: project + "/",
     css: project + "/css/",
     js: project + "/js/",
+    tools: project + "/tools/",
     img: project + "/img/",
     fonts: project + "/fonts/",
   },
@@ -15,6 +16,7 @@ let path = {
     html: [source + "/*.html", '!' + source + "/_*.html"],
     css: source + "/scss/style.scss",
     js: source + "/js/script.js",
+    tools: source + "/tools/*.js",
     img: source + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
     fonts: source + "/fonts/*.{ttf,woff,woff2}",
   },
@@ -22,6 +24,7 @@ let path = {
     html: source + "/**/*.html",
     css: source + "/scss/**/*.scss",
     js: source + "/js/**/*.js",
+    tools: source + "/tools/**/*.js",
     img: source + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
   },
   clean: "./" + project + "/"
@@ -105,6 +108,13 @@ function js() {
     .pipe(browsersync.stream())
 };
 
+function tools() {
+  return src(path.src.tools)
+    .pipe(fileinclude())
+    .pipe(dest(path.build.tools))
+    .pipe(browsersync.stream())
+};
+
 function images() {
   return src(path.src.img)
     .pipe(
@@ -183,6 +193,7 @@ function watchFiles(params) {
   gulp.watch([path.watch.html], html);
   gulp.watch([path.watch.css], css);
   gulp.watch([path.watch.js], js);
+  gulp.watch([path.watch.tools], tools);
   gulp.watch([path.watch.img], images);
 };
 
@@ -190,12 +201,13 @@ function clean(params) {
   return del(path.clean);
 };
 
-let build = gulp.series(clean, gulp.parallel(js, css, html, images, fonts), fontsStyle);
+let build = gulp.series(clean, gulp.parallel(js, tools, css, html, images, fonts), fontsStyle);
 let watch = gulp.parallel(watchFiles, build, browserSync);
 
 exports.fontsStyle = fontsStyle;
 exports.fonts = fonts;
 exports.images = images;
+exports.tools = tools;
 exports.js = js;
 exports.css = css;
 exports.html = html;

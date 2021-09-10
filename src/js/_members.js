@@ -4,16 +4,19 @@ if ($members) {
 
   const $membersChecksAll = $('.members__input--all');
   const $membersChecks = $('.members__input');
+  const $membersDrop = $('.members__drop');
 
-  $membersChecksAll.click(function () {
+  $membersChecksAll.on('click', function () {
 
     if ($(this).is(':checked')) {
-      $membersChecks.prop('checked', true);
+      $(this).closest('.members__item').nextAll().children($membersChecks).prop('checked', true);
     } else {
-      $membersChecks.prop('checked', false);
+      $(this).closest('.members__item').nextAll().children($membersChecks).prop('checked', false);
     }
 
   });
+
+  $membersDrop.children('.members__item--all').fadeOut();
 
   $(function () {
 
@@ -25,17 +28,44 @@ if ($members) {
       snapMode: 'inner',
       snapTolerance: 50,
       activate: function () {
-        $('#members__drop').addClass('members__drop--active');
+        $membersDrop.addClass('members__drop--active');
       },
       deactivate: function () {
-        $('#members__drop').removeClass('members__drop--active');
+        $membersDrop.removeClass('members__drop--active');
       }
     });
 
-    $('#members__drop').sortable({
+    $membersDrop.sortable({
+      containment: $('.members__container'),
       connectWith: '#members__list',
       items: '.members__item:not(:first)',
+      update: function () {
+        removeMember();
+      },
     });
+
+  });
+
+  function removeMember() {
+
+    if ($membersDrop.children('.members__item').length < 2) {
+      $('.members__info').fadeIn(1000);
+      $membersDrop.children('.members__item--all').fadeOut(500);
+
+    } else if ($membersDrop.children('.members__item').length > 1) {
+      $('.members__info').fadeOut(1000);
+      $membersDrop.children('.members__item--all').fadeIn(500);
+    }
+
+  };
+
+  const $membersDel = $('.members__del');
+
+  $membersDel.on('click', function () {
+
+    let del = $(this).parent();
+    $('.members__list').append(del);
+    removeMember();
 
   });
 

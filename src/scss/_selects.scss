@@ -1,4 +1,6 @@
 .selects {
+  position: relative;
+
   width: 100%;
 
   &--active {
@@ -39,6 +41,7 @@
   &__select {
     display: flex;
     flex-direction: row-reverse;
+    align-items: center;
     justify-content: flex-end;
 
     font: inherit;
@@ -48,6 +51,8 @@
 
     width: 246px;
     height: 23px;
+
+    padding-right: 3px;
 
     color: $black87;
     border: none;
@@ -64,9 +69,7 @@
       @extend %ic;
       font-size: 7px;
 
-      margin-top: 4px;
       margin-left: auto;
-      margin-right: 3px;
 
       transition: transform 0.2s ease 0s;
     }
@@ -142,6 +145,8 @@
   &__selector {
     display: flex;
     align-items: center;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
 
     box-sizing: border-box;
 
@@ -166,13 +171,8 @@
       background-color: rgba($color: $black, $alpha: 0.05);
     }
 
-    &:active {
-      background-color: $black87;
-    }
-
     &--active {
       flex-direction: row-reverse;
-      justify-content: space-between;
 
       color: $blue;
 
@@ -180,6 +180,8 @@
       &::before {
         @extend %ic;
         font-size: 9px;
+
+        margin-left: auto;
       
         color: $blue;
       }
@@ -188,5 +190,6 @@
 
   &__avatar {
     margin-right: 16px;
+    pointer-events: none;
   }
 }

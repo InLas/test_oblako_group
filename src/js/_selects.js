@@ -1,33 +1,33 @@
-const selectes = document.querySelectorAll('.selects');
+const $selects = $('.selects');
 
-if (selectes) {
-  selectes.forEach(selects => {
-    const select = selects.querySelector('.selects__select');
-    const drop = selects.querySelector('.selects__drop');
-    const selectors = selects.querySelectorAll('.selects__selector');
+if ($selects) {
+  const $select = $('.selects__select');
+  const $selectors = $('.selects__selector');
 
-    // select.addEventListener('click', (evt) => {
-    //   evt.preventDefault();
-    //   selects.classList.toggle('selects--active');
-    // });
+  $select.on('click', function (evt) {
+    evt.preventDefault();
+    this.blur();
+    let $current = $(this);
 
-    // document.addEventListener('click', function (e) {
-    //   const target = e.target;
-    //   const its_drop = target == drop || drop.contains(target);
-    //   const its_select = target == select;
-    //   const selects_is_active = selects.classList.contains('selects--active');
+    $(this).parent($selects).toggleClass('selects--active');
 
-    //   if (!its_drop && !its_select && selects_is_active) {
-    //     selects.classList.toggle('selects--active');
-    //   }
-    // });
+    $(document).on('click', function (evt) {
 
-    selectors.forEach(selector => {
-      selector.addEventListener('click', (evt) => {
-        evt.preventDefault();
+      if (!$current.is(evt.target)) {
+        $current.parent($selects).removeClass('selects--active');
+      }
 
-        select.textContent = selector.dataset.param;
-      });
     });
+
   });
+
+  $selectors.on('click', function (evt) {
+    evt.preventDefault();
+
+    $(this).closest($selects).find($select).html($(this).html());
+    $(this).closest($selects).find($selectors).removeClass('selects__selector--active');
+    $(this).addClass('selects__selector--active');
+
+  });
+
 }

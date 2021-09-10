@@ -8,6 +8,8 @@
   
   &__columns {
     flex-basis: 410px;
+    display: flex;
+    flex-direction: column;
 
     position: relative;
 
@@ -55,10 +57,10 @@
   }
 
   &__list {
+    flex: 1 1 100%;
     list-style: none;
 
     margin: 0;
-    margin-bottom: 25px;
     padding: 0;
   }
 
@@ -76,11 +78,19 @@
     @media (any-hover: hover) {
       &:hover {
         background-color: rgba($color: $black, $alpha: 0.05);
+
+        .members__del {
+          opacity: 1;
+        }
       }
     }
 
     &:focus {
       background-color: rgba($color: $black, $alpha: 0.05);
+
+      .members__del {
+        opacity: 1;
+      }
     }
   }
 
@@ -128,7 +138,7 @@
     
       position: absolute;
       top: 50%;
-      left: 4px;
+      left: 1px;
 
       transform: translate(0, -50%);
 
@@ -136,6 +146,35 @@
       height: 10px;
 
       background-image: url(../img/svg/check.svg);
+    }
+  }
+
+  &__del {
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 0;
+    line-height: 0;
+
+    width: 18px;
+    height: 18px;
+
+    margin-left: auto;
+    margin-right: 10px;
+    padding: 0;
+
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease 0s;
+
+    @extend ._icon-trash;
+    &::before {
+      @extend %ic;
+      font-size: 14px;
+      color: $black54;
     }
   }
 
@@ -150,6 +189,10 @@
 
     &--active {
       border: 1px dashed $blue;
+    }
+
+    .members__del {
+      display: flex;
     }
   }
 
@@ -180,6 +223,10 @@
       height: 52px;
 
       background-image: url(../img/drag`n`drop.png);
+    }
+
+    &--active {
+      display: block;
     }
   }
 }
