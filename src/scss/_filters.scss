@@ -72,6 +72,7 @@
     box-sizing: border-box;
 
     width: 100%;
+    min-height: 27px;
 
     padding: 3px 0 6px 0;
 
@@ -136,44 +137,26 @@
     color: $black54;
     background-color: rgba($color: $black, $alpha: 0.05);
     border-radius: 50px;
-
-    &--more {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-  
-      font-size: 10px;
-      line-height: 12px;
-  
-      padding: 2px 5px 3px;
-  
-      color: $black54;
-      background-color: rgba($color: $black, $alpha: 0.05);
-      border-radius: 50px;
-
-      @extend ._icon-plus;
-      &::before {
-        @extend %ic;
-        font-size: 8px;
-      }
-    }
   }
 
-  &__multiple-del {
-    background-color: transparent;
-    border: none;
+  &__more {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    padding: 0;
-    cursor: pointer;
+    font-size: 10px;
+    line-height: 12px;
 
-    @extend ._icon-cross;
+    padding: 2px 5px 3px;
+
+    color: $black54;
+    background-color: rgba($color: $black, $alpha: 0.05);
+    border-radius: 50px;
+
+    @extend ._icon-plus;
     &::before {
       @extend %ic;
-      font-size: 10px;
-
-      margin-left: 5px;
-
-      color: $black54;
+      font-size: 8px;
     }
   }
 

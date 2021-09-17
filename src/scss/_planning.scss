@@ -24,12 +24,6 @@
     box-shadow: 0 0 0 100vmax rgba($color: $bgColor, $alpha: 0.94);
   }
 
-  @media (min-width: $tablet-width) {
-    &--active {
-      right: -17px;
-    }
-  }
-
   &__container {
     @media (min-width: $tablet-width) {
       position: relative;

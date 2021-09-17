@@ -123,6 +123,7 @@ if ($filters) {
 
       evt.preventDefault();
       this.blur();
+
       let $current = $(this);
       let $parent = $(this).parent($filterItems);
       let $filterDrop = $(this).parent($filterItems).children('.filters__drop');
@@ -143,7 +144,6 @@ if ($filters) {
 
       const $inputSelectors = $(this).find($('.filters__input--selector'));
       const $filterSelects = $(this).find($('.filters__select'));
-
       let $resultMore = 1;
 
       $filterSelects.on('click', function (evt) {
@@ -151,17 +151,17 @@ if ($filters) {
         evt.preventDefault();
 
         let $result = $(this).attr('data-param');
-        let $content = `<span class="filters__multiple">${$result}<button class="filters__multiple-del"></button></span>`
-        let $contentMore = `<span class="filters__multiple--more">${$resultMore}</span>`
+        let $content = `<span class="filters__multiple">${$result}</span>`
+        let $contentMore = `<span class="filters__more">${$resultMore}</span>`
 
         if (!$(this).hasClass('filters__select--active')) {
           $(this).addClass('filters__select--active');
 
           if ($inputSelectors.children().length === 0) {
             $inputSelectors.append($content);
-          } else if ($inputSelectors.children('.filters__multiple--more').length > 0) {
+          } else if ($inputSelectors.children('.filters__more').length > 0) {
             $resultMore += 1;
-            $inputSelectors.children('.filters__multiple--more').html($resultMore);
+            $inputSelectors.children('.filters__more').html($resultMore);
           } else if ($inputSelectors.children().length > 0) {
             $inputSelectors.prepend($contentMore);
           }
@@ -169,15 +169,32 @@ if ($filters) {
         } else {
           $(this).removeClass('filters__select--active');
 
-          if ($inputSelectors.children('.filters__multiple--more').length > 0 && $inputSelectors.children('.filters__multiple').length > 0 && $inputSelectors.children('.filters__multiple--more').text() <= 1) {
-            $inputSelectors.remove('.filters__multiple--more');
-          } else if ($inputSelectors.children('.filters__multiple--more').length > 0) {
+          if ($inputSelectors.children('.filters__more').length > 0 && $inputSelectors.children('.filters__more').html() <= 1) {
+            $inputSelectors.children('.filters__more').remove('.filters__more');
+
+          } else if ($inputSelectors.children('.filters__more').length > 0) {
             $resultMore -= 1;
-            $inputSelectors.children('.filters__multiple--more').html($resultMore);
+            $inputSelectors.children('.filters__more').html($resultMore);
+
+          } else if ($inputSelectors.children('.filters__more').length === 0) {
+            $inputSelectors.children('.filters__multiple').remove('.filters__multiple');
           }
+
+          $filterSelects.each(function () {
+
+            let $currentSelect = $(this);
+
+            if ($currentSelect.hasClass('filters__select--active') && $inputSelectors.children('.filters__multiple').text() === $result) {
+
+              $inputSelectors.children('.filters__multiple').html($currentSelect.html());
+
+            }
+
+          });
 
         }
       });
+
     });
 
   });
@@ -449,3 +466,4 @@ jQuery(document).ready(function () {
   return datepicker.regional.ru;
 
 });;
+$('#timepicker1').timepicker();;

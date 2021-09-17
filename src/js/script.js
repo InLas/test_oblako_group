@@ -7,3 +7,4 @@
 @@include('_planning.js');
 @@include('_members.js');
 @@include('_datepicker-ru.js');
+@@include('_timepicker.js');
