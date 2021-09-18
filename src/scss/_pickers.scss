@@ -7,9 +7,7 @@
   pointer-events: all;
 
   max-width: 290px;
-  width: 100%;
 
-  margin: 0 -4px;
   padding: 16px;
 
   box-shadow: 0 2px 6px 0 rgba($color: $black, $alpha: 0.16);
@@ -71,6 +69,19 @@
   }
 
   & thead {
+    margin-bottom: 15px;
+  }
+
+  & tbody {
+    margin: 0 -4px;
+  }
+
+  & thead tr,
+  & tbody tr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     width: 100%;
   }
 
@@ -79,8 +90,10 @@
   }
 
   &-calendar {
+    display: flex;
+    flex-direction: column;
+
     width: 100%; 
-    border-spacing: 0;
   }
 
   & th {
@@ -90,6 +103,11 @@
 
   & td {
     padding: 0;
+  }
+
+  &-other-month .ui-state-default {
+    color: rgba($color: $black, $alpha: 0.22);
+    pointer-events: none;
   }
 }
 

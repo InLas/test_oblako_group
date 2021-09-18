@@ -36,15 +36,31 @@ if ($filters) {
     const $checkboxes = $(this).find($('.setting-filter__checkbox'));
 
     $openSetFilters.on('click', function () {
-
       let $current = $(this);
+      $current.blur();
 
-      $(this).siblings($settingFilters).toggleClass('setting-filter--active');
+      $current.siblings($settingFilters).toggleClass('setting-filter--active');
+
+      if ($current.hasClass('filters__btn--active')) {
+        $current.removeClass('filters__btn--active');
+      } else {
+        $current.addClass('filters__btn--active');
+      }
+
+      $(document).on('click', function (evt) {
+
+        if (!$current.siblings($settingFilters).hasClass('setting-filter--active')) {
+
+          $current.removeClass('filters__btn--active');
+        }
+
+      });
 
       $(document).on('click', function (evt) {
 
         if (!$current.is(evt.target) && !$current.siblings($settingFilters).is(evt.target) && $current.siblings($settingFilters).has(evt.target).length === 0) {
           $current.siblings($settingFilters).removeClass('setting-filter--active');
+          $current.removeClass('filters__btn--active');
         }
 
       });
@@ -408,6 +424,7 @@ jQuery(document).ready(function () {
     dateFormat: 'dd.mm',
     changeYear: true,
     showOn: 'button',
+    showOtherMonths: true,
     buttonImage: '../img/svg/calendar.svg',
     buttonImageOnly: true,
   });
@@ -415,6 +432,7 @@ jQuery(document).ready(function () {
     dateFormat: 'dd.mm',
     changeYear: true,
     showOn: 'button',
+    showOtherMonths: true,
     buttonImage: '../img/svg/calendar.svg',
     buttonImageOnly: true,
   });
@@ -422,6 +440,7 @@ jQuery(document).ready(function () {
     dateFormat: 'dd.mm',
     changeYear: true,
     showOn: 'button',
+    showOtherMonths: true,
     buttonImage: '../img/svg/calendar.svg',
     buttonImageOnly: true,
   });

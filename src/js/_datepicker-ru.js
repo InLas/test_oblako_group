@@ -4,6 +4,7 @@ jQuery(document).ready(function () {
     dateFormat: 'dd.mm',
     changeYear: true,
     showOn: 'button',
+    showOtherMonths: true,
     buttonImage: '../img/svg/calendar.svg',
     buttonImageOnly: true,
   });
@@ -11,6 +12,7 @@ jQuery(document).ready(function () {
     dateFormat: 'dd.mm',
     changeYear: true,
     showOn: 'button',
+    showOtherMonths: true,
     buttonImage: '../img/svg/calendar.svg',
     buttonImageOnly: true,
   });
@@ -18,6 +20,7 @@ jQuery(document).ready(function () {
     dateFormat: 'dd.mm',
     changeYear: true,
     showOn: 'button',
+    showOtherMonths: true,
     buttonImage: '../img/svg/calendar.svg',
     buttonImageOnly: true,
   });

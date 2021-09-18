@@ -28,15 +28,13 @@
   }
 
   &__label {
+    display: block;
+
     position: relative;
 
     padding-left: 36px;
 
     color: $black54;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 
     &::before {
       content: '';

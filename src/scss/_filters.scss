@@ -277,33 +277,17 @@
     border: none;
     cursor: pointer;
 
-    @media (min-width: $tablet-width) {
-      padding: 10px 20px;
-    }
-
     &--set {
       color: $black54;
 
       font-size: 0;
       line-height: 0;
+      transition: all 0.3s ease 0s;
   
       @extend ._icon-filter;
       &::before {
         @extend %ic;
         font-size: 15px;
-      }
-
-      @media (min-width: $tablet-width) {
-        font-size: 12px;
-        line-height: 16px;
-
-        color: $blue;
-
-        &::before {
-          color: $blue;
-
-          margin-right: 10px;
-        }
       }
     }
   
@@ -317,9 +301,41 @@
       
         margin-right: 14px;
       }
+    }
 
-      @media (min-width: $tablet-width) {
+    @media (min-width: $tablet-width) {
+      padding: 10px 20px;
+
+      &--set {
+        font-size: 12px;
+        line-height: 16px;
+
+        color: $blue;
+        border-radius: 24px;
+
+        &::before {
+          color: $blue;
+
+          margin-right: 10px;
+        }
+
+        @media (any-hover: hover) {
+          &:hover {
+            background-color: rgba($color: $blue, $alpha: 0.04);
+          }
+        }
+
+        &:focus {
+          background-color: rgba($color: $blue, $alpha: 0.12);
+        }
+      }
+
+      &--reset {
         display: block;
+      }
+
+      &--active {
+        background-color: rgba($color: $blue, $alpha: 0.16);
       }
     }
   }

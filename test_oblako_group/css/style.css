@@ -873,6 +873,9 @@ input[type="radio"].visually-hidden {
   color: rgba(0, 0, 0, 0.54);
   font-size: 0;
   line-height: 0;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
 }
 
 .filters__btn--set::before {
@@ -1786,8 +1789,6 @@ input[type="radio"].visually-hidden {
           box-sizing: border-box;
   pointer-events: all;
   max-width: 290px;
-  width: 100%;
-  margin: 0 -4px;
   padding: 16px;
   -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
           box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
@@ -1864,6 +1865,24 @@ input[type="radio"].visually-hidden {
 }
 
 .ui-datepicker thead {
+  margin-bottom: 15px;
+}
+
+.ui-datepicker tbody {
+  margin: 0 -4px;
+}
+
+.ui-datepicker thead tr,
+.ui-datepicker tbody tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: 100%;
 }
 
@@ -1872,8 +1891,14 @@ input[type="radio"].visually-hidden {
 }
 
 .ui-datepicker-calendar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 100%;
-  border-spacing: 0;
 }
 
 .ui-datepicker th {
@@ -1883,6 +1908,11 @@ input[type="radio"].visually-hidden {
 
 .ui-datepicker td {
   padding: 0;
+}
+
+.ui-datepicker-other-month .ui-state-default {
+  color: rgba(0, 0, 0, 0.22);
+  pointer-events: none;
 }
 
 .ui-state-default {
@@ -1975,13 +2005,10 @@ input[type="radio"].visually-hidden {
 }
 
 .conditions__label {
+  display: block;
   position: relative;
   padding-left: 36px;
   color: rgba(0, 0, 0, 0.54);
-  overflow: hidden;
-  -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .conditions__label::before {
@@ -2324,6 +2351,7 @@ input[type="radio"].visually-hidden {
     font-size: 12px;
     line-height: 16px;
     color: #1071FF;
+    border-radius: 24px;
   }
 
   .filters__btn--set::before {
@@ -2331,8 +2359,16 @@ input[type="radio"].visually-hidden {
     margin-right: 10px;
   }
 
+  .filters__btn--set:focus {
+    background-color: rgba(16, 113, 255, 0.12);
+  }
+
   .filters__btn--reset {
     display: block;
+  }
+
+  .filters__btn--active {
+    background-color: rgba(16, 113, 255, 0.16);
   }
 
   .setting-filter {
@@ -2397,6 +2433,12 @@ input[type="radio"].visually-hidden {
 
   .members__filter-item {
     width: 182px;
+  }
+}
+
+@media (min-width: 768px) and (any-hover: hover) {
+  .filters__btn--set:hover {
+    background-color: rgba(16, 113, 255, 0.04);
   }
 }
 
@@ -2492,6 +2534,14 @@ input[type="radio"].visually-hidden {
 }
 
  @media (min-width: 768px){
+
+@supports (-webkit-appearance:none){
+
+}
+
+}
+
+ @media (min-width: 768px) and (any-hover: hover){
 
 @supports (-webkit-appearance:none){
 
