@@ -101,8 +101,9 @@ input[type="radio"].visually-hidden {
 .selects__selector--active::before,
 .planning__btn--ok::before,
 .planning__btn--cancel::before,
-.ui-datepicker-prev::before,
-.ui-datepicker-next::before,
+.xdsoft_year::before,
+.xdsoft_prev::before,
+.xdsoft_next::before,
 .members__del::before {
   font-family: "icons";
   font-weight: normal;
@@ -144,8 +145,9 @@ input[type="radio"].visually-hidden {
 .filters__input--selector:before,
 .activity__link--active:before,
 .selects__select:before,
-.ui-datepicker-prev:before,
-.ui-datepicker-next:before {
+.xdsoft_year:before,
+.xdsoft_prev:before,
+.xdsoft_next:before {
   content: "\e90c";
 }
 
@@ -1360,7 +1362,7 @@ input[type="radio"].visually-hidden {
   transition: color 0.3s ease 0s;
 }
 
-.selects__name--main {
+.selects__name--program {
   margin-left: 0;
 }
 
@@ -1408,25 +1410,45 @@ input[type="radio"].visually-hidden {
   transition: transform 0.2s ease 0s, -webkit-transform 0.2s ease 0s;
 }
 
+.selects__select--time {
+  position: relative;
+  padding-left: 34px;
+}
+
+.selects__select--time::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translate(0, -50%);
+      -ms-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  width: 16px;
+  height: 16px;
+  background-image: url(../img/svg/time.svg);
+}
+
+.selects__avatar {
+  margin-right: 16px;
+  pointer-events: none;
+}
+
 .selects__datepicker {
   position: relative;
 }
 
-.selects__time,
+.selects__datepicker::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 16px;
+  background-image: url(../img/svg/calendar.svg);
+  pointer-events: none;
+}
+
 .selects__date {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: row-reverse;
-          flex-direction: row-reverse;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
   font: inherit;
   line-height: 100%;
   -webkit-box-sizing: border-box;
@@ -1435,6 +1457,7 @@ input[type="radio"].visually-hidden {
   height: 23px;
   margin: 0;
   padding: 0;
+  padding-left: 34px;
   color: rgba(0, 0, 0, 0.87);
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -1442,27 +1465,11 @@ input[type="radio"].visually-hidden {
   -webkit-transition: border-bottom 0.3s ease 0s;
   -o-transition: border-bottom 0.3s ease 0s;
   transition: border-bottom 0.3s ease 0s;
-}
-
-.selects__time:focus,
-.selects__date:focus {
-  border-bottom: 1px solid #1071FF;
-}
-
-.selects__time::-webkit-calendar-picker-indicator,
-.selects__date::-webkit-calendar-picker-indicator {
-  width: 15px;
-  height: 15px;
-  margin: 0;
-  margin-left: 2px;
-  margin-right: 18px;
-  padding: 0;
-  background-image: url(../img/svg/time.svg);
   cursor: pointer;
 }
 
-.selects__date {
-  padding-left: 34px;
+.selects__date:focus {
+  border-bottom: 1px solid #1071FF;
 }
 
 .selects__drop {
@@ -1526,11 +1533,6 @@ input[type="radio"].visually-hidden {
   font-size: 9px;
   margin-left: auto;
   color: #1071FF;
-}
-
-.selects__avatar {
-  margin-right: 16px;
-  pointer-events: none;
 }
 
 .selects-list {
@@ -1776,41 +1778,138 @@ input[type="radio"].visually-hidden {
   color: rgba(0, 0, 0, 0.22);
 }
 
-.ui-datepicker {
+.xdsoft_datetimepicker {
   display: none;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   pointer-events: all;
-  max-width: 290px;
   padding: 16px;
+  margin: 0;
+  margin-top: 8px;
   -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
           box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: #ffffff;
+  z-index: 9999;
 }
 
-.ui-datepicker-header {
+.xdsoft_datepicker {
+  display: none;
+  max-width: 290px;
+  width: 100%;
+  margin: 0;
+}
+
+.xdsoft_datepicker.active {
+  display: block;
+}
+
+.xdsoft_monthpicker {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.xdsoft_label {
+  position: relative;
+}
+
+.xdsoft_select {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 30px;
+  z-index: 101;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  max-height: 160px;
+  overflow-y: hidden;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
+          box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+.xdsoft_select .xdsoft_option {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: 100%;
-  margin-bottom: 8px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 80px;
+  height: 48px;
+  border-radius: 4px;
 }
 
-.ui-datepicker-prev,
-.ui-datepicker-next {
+.xdsoft_select .xdsoft_option:focus {
+  background-color: rgba(0, 0, 0, 0.16);
+}
+
+.xdsoft_select .xdsoft_option:active {
+  background-color: #1071FF;
+}
+
+.xdsoft_scrollbar > .xdsoft_scroller {
+  display: block !important;
+  background: #ccc !important;
+  height: 20px;
+  border-radius: 3px;
+}
+
+.xdsoft_scrollbar {
+  position: absolute;
+  width: 7px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.xdsoft_year {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  color: rgba(0, 0, 0, 0.54);
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.xdsoft_year::before {
+  font-size: 7px;
+  margin-left: 8px;
+  -webkit-transition: -webkit-transform 0.3s ease 0s;
+  transition: -webkit-transform 0.3s ease 0s;
+  -o-transition: transform 0.3s ease 0s;
+  transition: transform 0.3s ease 0s;
+  transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+}
+
+.xdsoft_month {
+  cursor: pointer;
+}
+
+.xdsoft_prev,
+.xdsoft_next {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1822,16 +1921,18 @@ input[type="radio"].visually-hidden {
           justify-content: center;
   font-size: 0;
   line-height: 0;
-  -webkit-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-          transform: rotate(90deg);
   width: 40px;
   height: 40px;
+  margin: 0;
+  margin-right: auto;
+  padding: 0;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
 }
 
-.ui-datepicker-prev::before,
-.ui-datepicker-next::before {
+.xdsoft_prev::before,
+.xdsoft_next::before {
   font-size: 12px;
   color: rgba(0, 0, 0, 0.54);
   -webkit-transition: -webkit-transform 0.3s ease 0s;
@@ -1839,58 +1940,27 @@ input[type="radio"].visually-hidden {
   -o-transition: transform 0.3s ease 0s;
   transition: transform 0.3s ease 0s;
   transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+  -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
 
-.ui-datepicker-month {
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: 700;
+.xdsoft_next {
+  margin: 0;
+  margin-left: auto;
 }
 
-.ui-datepicker-year {
-  font-size: 14px;
-  line-height: 18px;
-  color: rgba(0, 0, 0, 0.54);
-  border: none;
-  cursor: pointer;
-}
-
-.ui-datepicker-next {
+.xdsoft_next::before {
   -webkit-transform: rotate(-90deg);
       -ms-transform: rotate(-90deg);
           transform: rotate(-90deg);
-  -webkit-box-ordinal-group: 4;
-      -ms-flex-order: 3;
-          order: 3;
 }
 
-.ui-datepicker thead {
-  margin-bottom: 15px;
+.xdsoft_today_button {
+  display: none !important;
 }
 
-.ui-datepicker tbody {
-  margin: 0 -4px;
-}
-
-.ui-datepicker thead tr,
-.ui-datepicker tbody tr {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: 100%;
-}
-
-.ui-datepicker thead span {
-  color: rgba(0, 0, 0, 0.54);
-}
-
-.ui-datepicker-calendar {
+.xdsoft_calendar table {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1898,83 +1968,107 @@ input[type="radio"].visually-hidden {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
 }
 
-.ui-datepicker th {
+.xdsoft_calendar thead {
+  width: 100%;
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.xdsoft_calendar tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.xdsoft_calendar tbody {
+  width: 100%;
+}
+
+.xdsoft_date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 30px;
-  padding: 0;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-.ui-datepicker td {
-  padding: 0;
+.xdsoft_date:focus {
+  background-color: rgba(0, 0, 0, 0.16);
 }
 
-.ui-datepicker-other-month .ui-state-default {
+.xdsoft_date:active {
+  background-color: #1071FF;
+}
+
+.xdsoft_other_month {
   color: rgba(0, 0, 0, 0.22);
   pointer-events: none;
 }
 
-.ui-state-default {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 30px;
-  height: 30px;
-  margin: 4px;
-  padding: 0;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: #ffffff;
-  border-radius: 50%;
-  -webkit-transition: background-color 0.3s ease 0s;
-  -o-transition: background-color 0.3s ease 0s;
-  transition: background-color 0.3s ease 0s;
-  cursor: pointer;
-}
-
-.ui-state-default:focus {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.ui-state-default:active {
-  background-color: #1071FF;
-}
-
-.ui-datepicker-trigger {
-  position: absolute;
-  top: -1px;
-  left: 2px;
-  cursor: pointer;
-}
-
-.ui-timepicker {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  pointer-events: all;
-  padding: 16px;
-  -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
-          box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
-  background-color: #ffffff;
-}
-
-.ui-timepicker .periods {
+.xdsoft_timepicker {
   display: none;
+  max-width: 58px;
+  width: 100%;
+  margin: 0;
+}
+
+.xdsoft_timepicker.active {
+  display: block;
+}
+
+.xdsoft_timepicker .xdsoft_prev {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+  margin: 0;
+}
+
+.xdsoft_timepicker .xdsoft_next {
+  -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+  margin: 0;
+}
+
+.xdsoft_time_box {
+  position: relative;
+  height: 160px;
+  overflow: hidden;
+}
+
+.xdsoft_time_variant {
+  text-align: center;
+}
+
+.xdsoft_time {
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.xdsoft_time:focus {
+  background-color: rgba(0, 0, 0, 0.16);
+}
+
+.xdsoft_time:active {
+  background-color: #1071FF;
 }
 
 .conditions {
@@ -2511,8 +2605,16 @@ input[type="radio"].visually-hidden {
     background-color: rgba(0, 0, 0, 0.05);
   }
 
-  .ui-state-default:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+  .xdsoft_select .xdsoft_option:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  .xdsoft_date:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  .xdsoft_time:hover {
+    background-color: rgba(0, 0, 0, 0.04);
   }
 
   .members__item:hover {
@@ -2528,7 +2630,8 @@ input[type="radio"].visually-hidden {
 .filters__input--search{background:no-repeat center left url(../img/svg/search.svg)}
 .setting-filter__checkbox:checked + .setting-filter__label::after{background-image:url(../img/svg/check.svg)}
 .activity__btn::before{background:no-repeat center url(../img/svg/menu.svg)}
-.selects__time::-webkit-calendar-picker-indicator,.selects__date::-webkit-calendar-picker-indicator{background-image:url(../img/svg/time.svg)}
+.selects__select--time::after{background-image:url(../img/svg/time.svg)}
+.selects__datepicker::before{background-image:url(../img/svg/calendar.svg)}
 .members__input:checked + .members__label::after{background-image:url(../img/svg/check.svg)}
 .members__info::before{background-image:url(../img/drag`n`drop.webp)}
 }

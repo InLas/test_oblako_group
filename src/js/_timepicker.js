@@ -1,1 +1,0 @@
-$('#timepicker1').timepicker();

@@ -9,7 +9,7 @@ if ($selects) {
     this.blur();
     let $current = $(this);
 
-    $(this).parent($selects).toggleClass('selects--active');
+    $current.parent($selects).toggleClass('selects--active');
 
     $(document).on('click', function (evt) {
 
@@ -20,6 +20,10 @@ if ($selects) {
     });
 
   });
+
+  const $planingProgram = $selects.closest('.planning__program');
+
+  $planingProgram.find('.selects__selector').first().addClass('selects__selector--active');
 
   $selectors.on('click', function (evt) {
     evt.preventDefault();

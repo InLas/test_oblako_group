@@ -14,7 +14,7 @@
     <div class="planning__page  planning__page--active" data-planning="basic">
       <div class="planning__program">
         <div class="selects">
-          <span class="selects__name  selects__name--main">Программа</span>
+          <span class="selects__name  selects__name--program">Программа</span>
           <a href="#" class="planning__select selects__select">Страхование с заботой о клиенте</a>
           <ul class="selects__drop">
             <li>
@@ -60,7 +60,19 @@
               <li class="selects-list__item">
                 <div class="selects">
                   <span class="selects__name">Время</span>
-                  <input type="text" id="timepicker1" class="selects__time" value="09:00" autocomplete="off">
+                  <a href="#" class="selects__select  selects__select--time">09-00</a>
+                  <ul class="selects__drop">
+                    <li>
+                      <a href="#" data-param="09-25" class="selects__selector">09-25</a>
+                    </li>
+                    <li>
+                      <a href="#" data-param="10-25" class="selects__selector">10-25</a>
+                    </li>
+                    <li>
+                      <a href="#" data-param="11-25" class="selects__selector">11-25</a>
+                    </li>
+                  </ul>
+                  <input type="hidden">
                 </div>
               </li>
               <li class="selects-list__item">
@@ -109,7 +121,19 @@
               <li class="selects-list__item">
                 <div class="selects">
                   <span class="selects__name">Время</span>
-                  <input type="time" class="selects__time" value="09:00" autocomplete="off">
+                  <a href="#" class="selects__select  selects__select--time">09-00</a>
+                  <ul class="selects__drop">
+                    <li>
+                      <a href="#" data-param="09-25" class="selects__selector">09-25</a>
+                    </li>
+                    <li>
+                      <a href="#" data-param="10-25" class="selects__selector">10-25</a>
+                    </li>
+                    <li>
+                      <a href="#" data-param="11-25" class="selects__selector">11-25</a>
+                    </li>
+                  </ul>
+                  <input type="hidden">
                 </div>
               </li>
               <li class="selects-list__item">
@@ -159,7 +183,19 @@
               <li class="selects-list__item">
                 <div class="selects">
                   <span class="selects__name">Время</span>
-                  <input type="time" class="selects__time" value="09:00" autocomplete="off">
+                  <a href="#" class="selects__select  selects__select--time">09-00</a>
+                  <ul class="selects__drop">
+                    <li>
+                      <a href="#" data-param="09-25" class="selects__selector">09-25</a>
+                    </li>
+                    <li>
+                      <a href="#" data-param="10-25" class="selects__selector">10-25</a>
+                    </li>
+                    <li>
+                      <a href="#" data-param="11-25" class="selects__selector">11-25</a>
+                    </li>
+                  </ul>
+                  <input type="hidden">
                 </div>
               </li>
               <li class="selects-list__item">
@@ -421,7 +457,7 @@
                   <ul class="setting-filter__field">
                     <li class="setting-filter__item">
                       <input type="checkbox" id="search2" data-filter="search"
-                        class="visually-hidden setting-filter__checkbox" checked>
+                        class="visually-hidden setting-filter__checkbox" checked disabled>
                       <label for="search2" class="setting-filter__label">Поиск</label>
                     </li>
                     <li class="setting-filter__item">

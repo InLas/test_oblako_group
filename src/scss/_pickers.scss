@@ -1,30 +1,133 @@
-.ui-datepicker {
-  display: none;
-  flex-direction: column;
-  align-items: center;
+.xdsoft {
 
-  box-sizing: border-box;
-  pointer-events: all;
-
-  max-width: 290px;
-
-  padding: 16px;
-
-  box-shadow: 0 2px 6px 0 rgba($color: $black, $alpha: 0.16);
-  background-color: $bgColor;
-
-  &-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    width: 100%;
-
-    margin-bottom: 8px;
+  &_datetimepicker {
+    display: none;
+  
+    box-sizing: border-box;
+    pointer-events: all;
+  
+    padding: 16px;
+    margin: 0;
+    margin-top: 8px;
+  
+    box-shadow: 0 2px 6px 0 rgba($color: $black, $alpha: 0.16);
+    background-color: $bgColor;
+    z-index: 9999;
   }
 
-  &-prev,
-  &-next {
+  &_datepicker {
+    display: none;
+    max-width: 290px;
+    width: 100%;
+    margin: 0;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  &_monthpicker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 700;
+
+    margin-bottom: 15px;
+
+    color: $black87;
+  }
+
+  &_label {
+    position: relative;
+  }
+
+  &_select {
+    display: none;
+
+    position: absolute;
+    left: 0;
+    top: 30px;
+    z-index: 101;
+
+    box-sizing: border-box;
+
+    max-height: 160px;
+    overflow-y: hidden;
+
+    background-color: $bgColor;
+    box-shadow: 0 2px 6px 0 rgba($color: $black, $alpha: 0.16);
+
+    .xdsoft_option {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 80px;
+      height: 48px;
+
+      border-radius: 4px;
+
+      @media (any-hover: hover) {
+        &:hover {
+          background-color: rgba($color: $black, $alpha: 0.04);
+        }
+      }
+  
+      &:focus {
+        background-color: rgba($color: $black, $alpha: 0.16);
+      }
+  
+      &:active {
+        background-color: $blue;
+      }
+    }
+  }
+
+  &_scrollbar > &_scroller {
+    display: block !important;
+    background: #ccc !important;
+    height: 20px;
+    border-radius: 3px;
+  }
+
+  &_scrollbar {
+    position: absolute;
+    width: 7px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+  }
+
+  &_year {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    color: $black54;
+
+    margin-left: 4px;
+
+    cursor: pointer;
+
+    @extend ._icon-arrow-down;
+    &::before {
+      @extend %ic;
+      font-size: 7px;
+    
+      margin-left: 8px;
+      transition: transform 0.3s ease 0s;
+    }
+  }
+
+  &_month {
+    cursor: pointer;
+  }
+
+  &_prev,
+  &_next {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,11 +135,15 @@
     font-size: 0;
     line-height: 0;
 
-    transform: rotate(90deg);
-
     width: 40px;
     height: 40px;
 
+    margin: 0;
+    margin-right: auto;
+    padding: 0;
+
+    border: none;
+    background-color: transparent;
     cursor: pointer;
 
     @extend ._icon-arrow-down;
@@ -45,124 +152,131 @@
       font-size: 12px;
       color: $black54;
       transition: transform 0.3s ease 0s;
+      transform: rotate(90deg);
     }
   }
 
-  &-month {
-    font-size: 14px;
-    line-height: 18px;
-    font-weight: 700;
+  &_next {
+    margin: 0;
+    margin-left: auto;
+
+    &::before {
+      @extend %ic;
+
+      transform: rotate(-90deg);
+    }
+  }
+  
+  &_today_button {
+    display: none !important;
   }
 
-  &-year {
-    font-size: 14px;
-    line-height: 18px;
+  &_calendar {
+    table {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  
+      width: 100%;
+    }
 
-    color: $black54;
-    border: none;
-    cursor: pointer;
+    thead {
+      width: 100%;
+  
+      margin-bottom: 20px;
+  
+      color: $black54;
+    }
+  
+    tr {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    tbody {
+      width: 100%;
+    }
   }
 
-  &-next {
-    transform: rotate(-90deg);
-    order: 3;
-  }
-
-  & thead {
-    margin-bottom: 15px;
-  }
-
-  & tbody {
-    margin: 0 -4px;
-  }
-
-  & thead tr,
-  & tbody tr {
+  &_date {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
 
-    width: 100%;
-  }
-
-  & thead span {
-    color: $black54;
-  }
-
-  &-calendar {
-    display: flex;
-    flex-direction: column;
-
-    width: 100%; 
-  }
-
-  & th {
     width: 30px;
-    padding: 0;
+    height: 30px;
+
+    border-radius: 50%;
+    cursor: pointer;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: rgba($color: $black, $alpha: 0.04);
+      }
+    }
+
+    &:focus {
+      background-color: rgba($color: $black, $alpha: 0.16);
+    }
+
+    &:active {
+      background-color: $blue;
+    }
   }
 
-  & td {
-    padding: 0;
-  }
-
-  &-other-month .ui-state-default {
+  &_other_month {
     color: rgba($color: $black, $alpha: 0.22);
     pointer-events: none;
   }
-}
 
-.ui-state-default {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  &_timepicker {
+    display: none;
+    max-width: 58px;
+    width: 100%;
+    margin: 0;
 
-  width: 30px;
-  height: 30px;
-
-  margin: 4px;
-  padding: 0;
-
-  color: $black87;
-  background-color: $bgColor;
-  border-radius: 50%;
-  transition: background-color 0.3s ease 0s;
-  cursor: pointer;
-
-  @media (any-hover: hover) {
-    &:hover {
-      background-color: rgba($color: $black, $alpha: 0.05);
+    &.active {
+      display: block;
     }
   }
 
-  &:focus {
-    background-color: rgba($color: $black, $alpha: 0.05);
+  &_timepicker &_prev {
+    transform: rotate(180deg);
+    margin: 0;
   }
 
-  &:active {
-    background-color: $blue;
+  &_timepicker &_next {
+    transform: rotate(0deg);
+    margin: 0;
   }
-}
 
-.ui-datepicker-trigger {
-  position: absolute;
-  top: -1px;
-  left: 2px;
-  cursor: pointer;
-}
+  &_time_box {
+    position: relative;
+    height: 160px;
+    overflow: hidden;
+  }
 
-.ui-timepicker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  &_time_variant {
+    text-align: center;
+  }
 
-  box-sizing: border-box;
-  pointer-events: all;
+  &_time {
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
 
-  padding: 16px;
-  box-shadow: 0 2px 6px 0 rgba($color: $black, $alpha: 0.16);
-  background-color: $bgColor;
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: rgba($color: $black, $alpha: 0.04);
+      }
+    }
 
-  .periods {
-    display: none;
+    &:focus {
+      background-color: rgba($color: $black, $alpha: 0.16);
+    }
+
+    &:active {
+      background-color: $blue;
+    }
   }
 }
